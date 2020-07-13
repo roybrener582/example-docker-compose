@@ -1,14 +1,13 @@
 FROM node:alpine as builder
 
-WORKDIR /app
+WORKDIR /app/888front
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-
-COPY 888front/package*.json ./
+COPY 888front/package*.json ./888front
 
 RUN npm install 
 
-COPY . ./
+COPY . ./888front
 
 CMD ["npm","start"]
