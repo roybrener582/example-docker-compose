@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   backend:
     container_name: backend
@@ -6,7 +6,7 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
+      - "3000:3000"
     links:
       - redis
     environment:
@@ -17,22 +17,17 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - '4000:4000'
+      - "8080:80"
   redis:
-    image: 'redis:alpine'
+    image: "redis:alpine"
     entrypoint: redis-server --appendonly yes
     container_name: cache
     expose:
       - 6379
     ports:
-      - '6379:6379'
+      - "6379:6379"
     volumes:
       - /mnt/vol1/redis/data:/data
 volumes:
   redis-data:
-    # driver: local
-    # driver_opts:
-    #   o: bind
-    #   type: none
-    #   device: /mnt/vol1/redis/data
   app-data:
